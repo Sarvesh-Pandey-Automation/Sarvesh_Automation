@@ -12,7 +12,7 @@ Feature: Create Campaign
     Then I selected the audience type as show to Unknown user 
     Then I clicked on save&continue button
     Then I applied template type filter "GLOBAL"
-    Then I Searched and Selected the template with name "Just rArrived"
+    Then I Searched and Selected the template with name "Just Arrived"
     Then I clicked on save&continue button
     Then I clicked on save&continue button
     Then I clicked on launchCamapign button
