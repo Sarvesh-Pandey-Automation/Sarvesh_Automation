@@ -65,7 +65,15 @@ public class hooks extends BaseTest{
 //    }   
     
     
-    
+//    @Before
+//    public void beforeScenario(Scenario scenario) {
+//        logScenarioStart(scenario);
+//    }
+//
+//    @After
+//    public void afterScenario(Scenario scenario) {
+//        logScenarioEnd(scenario);
+//    }
     
     
 	}

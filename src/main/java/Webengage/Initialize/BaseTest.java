@@ -6,20 +6,25 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.Logger;
 import org.junit.AfterClass;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 
+import Webengage.LoggerHelper;
 import io.cucumber.java.Scenario;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.webdriver.ThucydidesWebDriverSupport;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BaseTest extends Initialize {
 
 //	protected PageObjectManager page;
 	protected static PageObjectManager page;
+	 protected static final Logger logger = LogManager.getLogger(BaseTest.class);
 
 	
 	
@@ -42,6 +47,7 @@ public class BaseTest extends Initialize {
 		
 		
 		driver.quit();
+		logger.info("WebDriver closed.");
 
 	}
 	
@@ -114,5 +120,20 @@ public class BaseTest extends Initialize {
 //	        }
 //	    }
 	
+	
+	
+
+	 public void logScenarioStart(Scenario scenario) {
+	        logger.info("🚀 STARTING Scenario: " + scenario.getName());
+	    }
+
+	    public void logScenarioEnd(Scenario scenario) {
+	        if (scenario.isFailed()) {
+	            logger.error("❌ FAILED Scenario: " + scenario.getName());
+	            logger.error("Reason: " + scenario.getStatus());
+	        } else {
+	            logger.info("✅ PASSED Scenario: " + scenario.getName());
+	        }
+	    }
 	
 }

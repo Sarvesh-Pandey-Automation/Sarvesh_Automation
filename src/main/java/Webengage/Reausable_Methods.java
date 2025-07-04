@@ -60,6 +60,7 @@ public class Reausable_Methods {
 	
 	public void hoverOverElement(WebElement element) {
 	    Actions actions = new Actions(driver);
+	   
 	    actions.moveToElement(element).perform();
 	}
 
@@ -242,6 +243,53 @@ public void scrollToCenter(WebElement element) {
 	
 	((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
 }
+
+
+public void scrollToCenter1(WebElement element) {
+    // Scroll to center
+    ((JavascriptExecutor) driver).executeScript(
+        "arguments[0].scrollIntoView({behavior: 'instant', block: 'center', inline: 'center'});", element);
+
+    // Wait a short moment to let the browser visually scroll
+    try {
+        Thread.sleep(300); // optional but helps on slower machines
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+
+    // Extra safeguard: verify it's in viewport
+    Boolean isInView = (Boolean) ((JavascriptExecutor) driver).executeScript(
+        "const rect = arguments[0].getBoundingClientRect();" +
+        "return (rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && " +
+        "rect.right <= (window.innerWidth || document.documentElement.clientWidth));",
+        element
+    );
+
+    if (!isInView) {
+        System.out.println("⚠️ Element is still not in viewport after scroll!");
+    }
+}
+
+
+
+public void scrollCardToCenter(WebElement cardElement) {
+    if (cardElement == null) {
+        System.out.println("Card element not provided");
+        return;
+    }
+
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+
+    js.executeScript("""
+        const el = arguments[0];
+        el.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' });
+        const rect = el.getBoundingClientRect();
+        window.scrollBy(0, rect.top - (window.innerHeight / 2));
+    """, cardElement);
+}
+
+
+
 
 
 

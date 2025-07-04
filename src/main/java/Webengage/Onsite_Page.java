@@ -25,6 +25,12 @@ public class Onsite_Page extends Reausable_Methods{
 
 	@FindBy(xpath = "//div[@class='editable-text w-95']//h5")
 	WebElement campaignTitle;
+	
+	By CampaignTitle =By.xpath("//div[@class='editable-text w-95']//h5");
+	
+	//div[@class='editable-text w-95']
+	@FindBy(xpath = "//div[@class='editable-text w-95']")
+	WebElement campaignTitleNew;
 
 	@FindBy(xpath = "//input[@name='title']")
 	WebElement campaignTitleInput;
@@ -220,6 +226,9 @@ public class Onsite_Page extends Reausable_Methods{
 	}
 
 	public void addCampaignTitle(String newTitle) throws InterruptedException {
+////		campaignTitle.click();
+//		Thread.sleep(3000);
+		waitElementToClick(CampaignTitle,10);
 		campaignTitle.click();
 		clearAndType(campaignTitleInput, newTitle);
 	}
@@ -349,7 +358,8 @@ public class Onsite_Page extends Reausable_Methods{
 		WebElement useTemplateBtn = temp.findElement(usetemplate);
 
 		// Scroll into view of the button
-		scrollToCenter(useTemplateBtn);
+		Thread.sleep(3000);
+		scrollToCenter1(useTemplateBtn);
 		
 		hoverOverElement(Find(DynamicXPathLocator(GENERIC_TEMPLATE_NAME,TemplateName)));
 //	hoverOverElement(useTemplate);
@@ -399,7 +409,10 @@ public class Onsite_Page extends Reausable_Methods{
 
 	    // Proceed with using the matched template
 	    WebElement useTemplateBtn = matchedTemplate.findElement(usetemplate);
-	    scrollToCenter(useTemplateBtn);
+	    
+	    
+//	    scrollToCenter(useTemplateBtn);
+	    scrollCardToCenter(matchedTemplate);
 	    hoverOverElement(Find(DynamicXPathLocator(GENERIC_TEMPLATE_NAME, templateName)));
 	    useTemplateBtn.click();
 

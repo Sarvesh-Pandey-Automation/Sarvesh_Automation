@@ -33,7 +33,7 @@ public class SerenityRunnerTest {
 	
 	  @BeforeClass
 	    public static void initialize() throws IOException, InterruptedException{
-	        String env="us";
+	        String env="staging";
 	        String credsUn="aditya.dhanve+1@webengage.com";
 	        String credsPw="@dmin@123";
 	        System.setProperty("env", env);
