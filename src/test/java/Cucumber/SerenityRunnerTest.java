@@ -33,14 +33,14 @@ public class SerenityRunnerTest {
 	
 	  @BeforeClass
 	    public static void initialize() throws IOException, InterruptedException{
-	        String env="staging";
+	        String env="us";
 	        String credsUn="aditya.dhanve+1@webengage.com";
 	        String credsPw="@dmin@123";
 	        System.setProperty("env", env);
 	        System.setProperty("set.Namespace", "automation");
 	        System.setProperty("set.CredentialsUN", credsUn);
 	        System.setProperty("set.CredentialsPW", credsPw);
-	        System.setProperty("browser","firefox");
+	        System.setProperty("browser","chrome");
 	        System.setProperty("set.LicenseCode","null");
 	        System.setProperty("set.Suite", "WebSDKSuite");// WebSDKSuite
 	       
