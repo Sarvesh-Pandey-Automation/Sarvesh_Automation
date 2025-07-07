@@ -1,5 +1,6 @@
 package Webengage;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -10,8 +11,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+
+
+
 
 public class Onsite_Page extends Reausable_Methods{
 
@@ -109,10 +117,33 @@ public class Onsite_Page extends Reausable_Methods{
 
 	@FindBy(xpath = "//span[@class='Heading']/div")
 	WebElement beeTitleBlock;
+	By beetitleBlock= By.xpath("//span[@class='Heading']/div");
+	
+	@FindBy(xpath = "//span[@class='CloseButton']/div")
+	WebElement beeCloseModal;
+	By beecloseModal= By.xpath("//span[@class='CloseButton']/div");
+	
+	//*[text()='configure']
+	
+	@FindBy(xpath = "//*[text()='configure']")
+	WebElement beeCloseModalConfigure;
+	By beecloseModalConfigure= By.xpath("//*[text()='configure']");
+	
+	
+
+	@FindBy(xpath = "//*[text()='Button']")
+	WebElement beeContentButtonBlock;
+	By beecontentButtonBlock= By.xpath("//*[text()='Button']");
+	
+	//*[span[text()='OK']]
+	
+	
+	
 
 	@FindBy(xpath = "//div[@data-qa='column-outer']")
 	WebElement beeSourceRow;
-
+	By beeSourcerow= By.xpath("//div[@data-qa='column-outer']");
+	
 	@FindBy(xpath = "//span[@class='tinyMce-placeholder']")
 	WebElement beeContent;
 
@@ -213,6 +244,7 @@ public class Onsite_Page extends Reausable_Methods{
 
 	// ========== Dynamic Locators (Placeholders) ==========
 	public static final String GENERIC_TITLE = "//*[@title='%s']";
+	public static final String GENERIC_SPAN_TEXT = "//*[span[text()='%s']]";
 	public static final String GENERIC_TEXT = "//*[text()='%s']";
 	public static final String GENERIC_CLASS = "//*[@class='%s']";
 	public static final String GENERIC_KEY_VALUE = "//*[@%s1='%s2']";
@@ -426,8 +458,113 @@ public class Onsite_Page extends Reausable_Methods{
 
 	
 	
-
+	public void Create_Template() throws InterruptedException {
+		
+	newTemplate.click();
 	
+	
+	
+
+	}
+	
+	public void Select_Layout() throws InterruptedException {
+		
+	
+	newBoxTemplate.click();
+	
+	
+
+	}
+	
+	
+	
+	public void performDragAndDropWithWaits(By iframeLocator) {
+		try {
+//			 Thread.sleep(3000);
+//			switchToFrame();
+			 Thread.sleep(3000);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+			// Wait for iframe and switch to it
+			System.out.println("🔍 Waiting for iframe...");
+			wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(iframeLocator));
+			System.out.println("✅ Switched to iframe.");
+
+			// Wait for source element
+			System.out.println("🔍 Waiting for source element...");
+			WebElement source = wait.until(ExpectedConditions.visibilityOfElementLocated(beetitleBlock));
+			System.out.println("✅ Source element located: " + source.getText());
+
+			// Wait for target element
+			System.out.println("🔍 Waiting for target element...");
+			WebElement target = wait.until(ExpectedConditions.visibilityOfElementLocated(beeSourcerow));
+			System.out.println("✅ Target element located: " + target.getText());
+
+			// Print element locations
+			System.out.println("📍 Source location: " + source.getLocation());
+			System.out.println("📍 Target location: " + target.getLocation());
+			
+			
+			
+			
+			WebElement source2 = wait.until(ExpectedConditions.visibilityOfElementLocated(beecloseModal));
+			WebElement source3 = wait.until(ExpectedConditions.visibilityOfElementLocated(beecontentButtonBlock));
+			
+			
+			
+			
+			
+
+			// Perform drag-and-drop
+			System.out.println("🚀 Performing drag and drop...");
+			Actions actions = new Actions(driver);
+			actions.dragAndDrop(source, target).build().perform();
+			actions.dragAndDrop(source2, target).build().perform();
+			actions.dragAndDrop(source3, target).build().perform();
+			System.out.println("✅ Drag and drop completed.");
+
+		} catch (Exception e) {
+			System.out.println("❌ Error during drag-and-drop: " + e.getMessage());
+			e.printStackTrace();
+		}
+
+	}
+
+public void switchToFrame () {
+	
+	switchToIframeByXPath("//iframe[contains(@id,'bee-plugin-frame')]");
+	
+}
+
+
+public void Fill_Content_bee() throws InterruptedException {
+	System.out.println("fetchText(Elements.bee_content)");
+	beeContent.click();
+	beeContent.clear();
+	Thread.sleep(200);
+	beeContent.sendKeys("Title Added By Automated Software");
+	beeContentTab.click();
+	ConfigureBeeCloseModal();
+	
+	
+
+}
+	
+
+public void ConfigureBeeCloseModal() throws InterruptedException {
+	
+//	beeCloseModalConfigure.click();
+	Find(DynamicXPathLocator(GENERIC_TEXT,"configure")).click();
+	driver.switchTo().defaultContent();
+	 WebElement ok = Find(DynamicXPathLocator(GENERIC_SPAN_TEXT,"OK"));
+	 waitElementToClick(ok,10);
+	 ok.click();
+	 switchToIframeByXPath("//iframe[contains(@id,'bee-plugin-frame')]");
+	 Find(DynamicXPathLocator(GENERIC_TEXT,"Content")).click();
+	 
+//	Find(DynamicXPathLocator(GENERIC_TEXT,"OK")).click();
+	
+}
 
 	
 

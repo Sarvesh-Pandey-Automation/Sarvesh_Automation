@@ -1,9 +1,13 @@
 package Webengage.stepDefinitions;
+import org.openqa.selenium.By;
+
 import Webengage.Initialize.BaseTest;
 import Webengage.Initialize.PageObjectManager;
 import Webengage.hooks.hooks;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+
+
 
 public class StepDefinationimp extends BaseTest {
 	
@@ -99,7 +103,66 @@ public void I_clicked_on_launchCamapign_button () throws InterruptedException
 	
 			
 }
+
+
+
+@Then ("I clicked on {string} template button")
+
+public void I_clicked_on__template_button (String button) throws InterruptedException
+
+{
+	page.getOnsitePage().Create_Template();
+	
+	
+			
+}
+
+
+@Then ("I selected layout type as  {string}")
+
+public void I_selected_layout_type(String layout) throws InterruptedException
+
+{
+	page.getOnsitePage().Select_Layout();
+	
+	
+			
+}
+
+
+@Then ("I selected the content block")
+
+public void I_selected_the_content_block() throws InterruptedException
+
+{
+	page.getOnsitePage().performDragAndDropWithWaits( 
+			
+		    By.xpath("//iframe[contains(@id,'bee-plugin-frame')]")
+		    
+		  
+		
+			);
+	
+	
+			
+}
+
+
+@Then ("I filled the content")
+
+public void I_filled_the_content () throws InterruptedException
+
+{
+	page.getOnsitePage().Fill_Content_bee();
+	
+			
+}
+
+
+
+
+}
 	
 	
 
-}
+

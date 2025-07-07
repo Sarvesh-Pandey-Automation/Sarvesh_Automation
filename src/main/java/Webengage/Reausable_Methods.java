@@ -1,6 +1,8 @@
 package Webengage;
 
 import java.time.Duration;
+import java.util.NoSuchElementException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -305,7 +307,19 @@ public void waitUntilVisibleAndStable(By locator, int timeoutInSeconds) {
     });
 }	
 	
-	
+public void  switchToIframeByXPath( String iframeXPath) {
+    try {
+        WebElement iframe = driver.findElement(By.xpath(iframeXPath));
+        driver.switchTo().frame(iframe);
+        System.out.println("✅ Switched to iframe: " + iframeXPath);
+      
+    } catch (NoSuchElementException e) {
+        System.err.println("❌ Iframe not found: " + iframeXPath);
+    } catch (Exception e) {
+        System.err.println("❌ Error switching to iframe: " + e.getMessage());
+    }
+    
+}	
 	
 	
 }

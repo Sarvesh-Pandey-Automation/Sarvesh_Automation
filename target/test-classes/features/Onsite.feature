@@ -58,4 +58,25 @@ Feature: Create Campaign
     Examples: 
       |title 				|templateName 										|
       |Updated-13	  |Personalisation_Test							| 
+      
+      
+      
+      
+  @tag5
+  Scenario Outline: Create Onsite Notification with new Template 
+    Given I Navigate to "On-site Notifications" page via "Web Personalization"
+    Then I clicked on create notification button
+    Then I added the new campaign tile name as <title> 
+    Then I selected the audience type as show to Unknown user 
+    Then I clicked on save&continue button  
+    Then I clicked on "Create" template button
+    Then I selected layout type as  "Box"
+    Then I selected the content block
+    Then I filled the content
+      
+  
+      Examples: 
+      |title 				|templateName 										|
+      |New Template  |Personalisation_Test							| 
+      
   
