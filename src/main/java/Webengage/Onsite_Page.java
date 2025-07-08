@@ -52,6 +52,12 @@ public class Onsite_Page extends Reausable_Methods{
 	@FindBy(xpath = "//button[span[text()='Save & Continue']]")
 	WebElement saveAndContinue;
 	
+	
+	
+	@FindBy(xpath = "//*[text()='This field is required']//../div")
+	WebElement selectNavigationOption;
+	
+	
 	By saveButton =By.xpath("//button[span[text()='Save & Continue']]");
 
 	@FindBy(xpath = "//*[@class='ant-radio-input' and @value='GLOBAL']")
@@ -156,6 +162,19 @@ public class Onsite_Page extends Reausable_Methods{
 	@FindBy(xpath = "//button[@id='content']")
 	WebElement beeContentTab;
 
+	
+	
+	//p[text()='Button']
+	@FindBy(xpath = "//*[contains(@class, 'editor_outer_button_item')]/div//p")
+	WebElement beeButtonName;
+	
+	@FindBy(css = ".buttonwrapper>div")
+	WebElement BeeButtonName;
+	
+	
+	
+	
+	
 	@FindBy(xpath = "//div[@data-dnd-name='row 1']")
 	WebElement beeSourceRow2;
 
@@ -288,6 +307,28 @@ public class Onsite_Page extends Reausable_Methods{
 //		waitElementToClick(saveButton,10);
 		
 		saveAndContinue.click();
+		
+		
+	}
+	
+
+	public void ActionButton(String value) throws InterruptedException {
+////		waitElementToAppear(saveButton,10);
+////		Thread.sleep(3000);
+//		waitElementToClick(saveButton,10);
+//		
+//		waitElementToInvisible(loader,10);
+////		waitElementToClickAndClick(saveButton,10);
+////		waitElementToClick(saveButton,10);
+//		
+//		saveAndContinue.click();
+		
+		
+		waitElementToClick((DynamicXPathLocator(GENERIC_SPAN_TEXT,value)),10);
+		
+		waitElementToInvisible(loader,10);
+		Find(DynamicXPathLocator(GENERIC_SPAN_TEXT,value)).click();
+		
 		
 		
 	}
@@ -545,6 +586,15 @@ public void Fill_Content_bee() throws InterruptedException {
 	beeContent.sendKeys("Title Added By Automated Software");
 	beeContentTab.click();
 	ConfigureBeeCloseModal();
+//	beeButtonName.click();
+////	beeButtonName.clear();
+//	waitElementToClick(beeButtonName,10);
+//	clearAndType(beeButtonName,"Submit");
+////	beeButtonName.sendKeys("Submit");
+//	
+//	
+	driver.switchTo().defaultContent();
+	
 	
 	
 
@@ -565,6 +615,15 @@ public void ConfigureBeeCloseModal() throws InterruptedException {
 //	Find(DynamicXPathLocator(GENERIC_TEXT,"OK")).click();
 	
 }
+
+public void SetNaviagtion() {
+	
+	selectNavigationOption.click();
+	Find(DynamicXPathLocator(GENERIC_KEY_VALUE,"title","Close campaign")).click();
+	
+	
+}
+
 
 	
 

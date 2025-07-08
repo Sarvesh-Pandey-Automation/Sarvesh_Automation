@@ -73,7 +73,12 @@ Feature: Create Campaign
     Then I selected layout type as  "Box"
     Then I selected the content block
     Then I filled the content
-      
+    Then I clicked on "Save & Close" button 
+    Then I clicked on Message "Navigation" button 
+    Then I clicked on "Save & Continue" button
+    Then I clicked on "Save & Continue" button
+    Then I clicked on "Launch Campaign" button
+    
   
       Examples: 
       |title 				|templateName 										|

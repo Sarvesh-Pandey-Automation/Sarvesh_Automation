@@ -161,6 +161,31 @@ public void I_filled_the_content () throws InterruptedException
 
 
 
+@Then ("I clicked on {string} button")
+
+public void I_clicked_on_save_continue_button (String value) throws InterruptedException
+
+{
+	page.getOnsitePage().ActionButton(value);
+			
+}
+
+ 
+
+@Then ("I clicked on Message {string} button")
+
+public void I_clicked_on_navigation_button (String value) throws InterruptedException
+
+{
+	page.getOnsitePage().ActionButton(value);
+	page.getOnsitePage().SetNaviagtion();
+	
+	
+			
+}
+
+
+
 }
 	
 	
