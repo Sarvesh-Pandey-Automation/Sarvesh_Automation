@@ -24,6 +24,44 @@
       <version>7.11.0</version>
     </dependency>
     
+    
+  
+
+    <!-- JUnit 5 Jupiter API and Engine -->
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>${junit.jupiter.version}</version>
+    </dependency>
+
+    <!-- Optional: Platform launcher (only needed if not included transitively) -->
+    <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-launcher</artifactId>
+        <version>${junit.platform.version}</version>
+    </dependency>
+
+    <!-- Optional: If running tests in IDEs or from CLI -->
+    <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-engine</artifactId>
+        <version>${junit.platform.version}</version>
+    </dependency>
+
+    <!-- SLF4J Logger Binding (Optional) -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>2.0.9</version>
+    </dependency>
+ 
+    
+    
+    
+    
+    
+    
+    
     <dependency>
   <groupId>com.fasterxml.jackson.dataformat</groupId>
   <artifactId>jackson-dataformat-xml</artifactId>
@@ -198,6 +236,13 @@
     <maven.compiler.source>21</maven.compiler.source>
     <maven.compiler.target>21</maven.compiler.target>
     <maven.compiler.release>21</maven.compiler.release>
+    
+  
+    <junit.jupiter.version>5.10.2</junit.jupiter.version>
+    <junit.platform.version>1.10.2</junit.platform.version>
+
+
+    
   </properties>
 
 </project>
